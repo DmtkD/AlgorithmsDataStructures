@@ -1,16 +1,16 @@
 public class AVLTree {
    private Node root;
 
-   private int height(Node n) {
-      if (n == null)
+   private int height(Node node) {
+      if (node == null)
          return 0;
-      return n.height;
+      return node.height;
    }
 
-   private int getBalance(Node N) {
-      if (N == null)
+   private int getBalance(Node node) {
+      if (node == null)
          return 0;
-      return height(N.left) - height(N.right);
+      return height(node.left) - height(node.right);
    }
 
    private Node rightRotate(Node y) {
@@ -79,8 +79,76 @@ public class AVLTree {
       root = insert(root, key);
    }
 
-   public void delete(int value) {
-      //TODO delete
+   private Node minKeyNode(Node node)
+   {
+      Node current = node;
+      while (current.left != null)
+         current = current.left;
+
+      return current;
+   }
+
+   private Node delete(Node node, int key) {
+      if (key < node.key)
+         node.left = delete(node.left, key);
+      else if (key > node.key)
+         node.right = delete(node.right, key);
+      else
+      {
+         if ((node.left == null) || (node.right == null))
+         {
+            Node temp = null;
+            if (node.left == null)
+               temp = node.right;
+            else
+               temp = node.left;
+
+            if (temp == null)
+            {
+               temp = node;
+               node = null;
+            } else
+               node = temp;
+         } else {
+            Node temp = minKeyNode(node.right);
+            node.key = temp.key;
+            node.right = delete(node.right, temp.key);
+         }
+      }
+
+      if (node == null)
+         return node;
+
+      node.height = Math.max(height(node.left), height(node.right)) + 1;
+      int balance = getBalance(node);
+
+      // Left Left Case
+      if (balance > 1 && getBalance(node.left) >= 0)
+         return rightRotate(node);
+
+      // Left Right Case
+      if (balance > 1 && getBalance(node.left) < 0)
+      {
+         node.left = leftRotate(node.left);
+         return rightRotate(node);
+      }
+
+      // Right Right Case
+      if (balance < -1 && getBalance(node.right) <= 0)
+         return leftRotate(node);
+
+      // Right Left Case
+      if (balance < -1 && getBalance(node.right) > 0)
+      {
+         node.right = rightRotate(node.right);
+         return leftRotate(node);
+      }
+
+      return node;
+   }
+
+   public void delete(int key) {
+      root = delete(root, key);
    }
 
    public void print() {

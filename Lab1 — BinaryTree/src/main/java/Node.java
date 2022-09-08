@@ -24,7 +24,7 @@ public class Node {
 
 
    // Author Oleh Dzhumyk
-   public void printSubTree() {
+   protected void printSubTree() {
       int width = (int) Math.pow(2, height + 1) - 1;
 
       String[][] outputArray = new String[height + 1][width];
@@ -64,7 +64,6 @@ public class Node {
       boolean trigger = false;
       for (String[] integers : outputArray) {
          for (String integer : integers) {
-
             if (integer == null) {
                for (int i = 0; i < cellSize; i++) {
                   System.out.print(space);
@@ -84,7 +83,6 @@ public class Node {
                   trigger = true;
                   space = ' ';
                }
-
             }
          }
          System.out.println();

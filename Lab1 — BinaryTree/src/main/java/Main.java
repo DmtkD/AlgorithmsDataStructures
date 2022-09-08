@@ -9,16 +9,12 @@ public class Main {
       tree.insert(40);
       tree.insert(50);
       tree.insert(25);
-      tree.insert(300);
-      tree.insert(60);
-      tree.insert(80);
-      tree.insert(75);
-      tree.insert(1);
-      tree.insert(-2);
 
+      tree.print();
 
+      tree.delete(40);
+      tree.delete(30);
 
-      //tree.preOrder();
       tree.print();
    }
 }
