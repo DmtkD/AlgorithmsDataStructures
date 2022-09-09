@@ -117,7 +117,7 @@ public class AVLTree {
       }
 
       if (node == null)
-         return node;
+         return null;
 
       node.height = Math.max(height(node.left), height(node.right)) + 1;
       int balance = getBalance(node);
@@ -127,8 +127,7 @@ public class AVLTree {
          return rightRotate(node);
 
       // Left Right Case
-      if (balance > 1 && getBalance(node.left) < 0)
-      {
+      if (balance > 1 && getBalance(node.left) < 0) {
          node.left = leftRotate(node.left);
          return rightRotate(node);
       }
@@ -138,8 +137,7 @@ public class AVLTree {
          return leftRotate(node);
 
       // Right Left Case
-      if (balance < -1 && getBalance(node.right) > 0)
-      {
+      if (balance < -1 && getBalance(node.right) > 0) {
          node.right = rightRotate(node.right);
          return leftRotate(node);
       }

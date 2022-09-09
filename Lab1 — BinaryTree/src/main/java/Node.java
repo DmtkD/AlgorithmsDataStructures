@@ -8,7 +8,8 @@ public class Node {
       this.key = key;
    }
 
-   public static class Range {
+   // Author Oleh Dzhumyk
+   private static class Range {
       int leftBorder;
       int rightBorder;
 
@@ -17,7 +18,7 @@ public class Node {
          this.rightBorder = rightBorder;
       }
 
-      public int middle() {
+      int middle() {
          return (leftBorder + rightBorder) / 2;
       }
    }
