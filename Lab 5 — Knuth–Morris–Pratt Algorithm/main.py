@@ -1,16 +1,16 @@
 import time
 
-from KMPSearch import KMPSearch
+from KMPSearch import kmp
 
 
 def main():
-    txt = "ABABDABACDABABCABABi4432u2jkdnsfmdnsfjxsfjdnjandsjndajndjfndsjfhdsfbdsfbdshjfbdsnfdsjnbfsdhjbfdshfdsjhjfdsbhafdshbfdhbfdsfdjhsbfdjhbfdsoahdbhjfdnfldsbnjhlfdnbahfdbfhjdaanfdjlfdsjhfdsjfdsshfdhafdhjsahjafdshafhdsjsfdjfdhjjhdsjhkashhrewbiureihfefdsfjndsaklfdnsalmfkdnsalfkdnfdsklmanfdslafdnfldanjfdaijfndsiafdnjkdfnkdsjlndsf"
-    pat = "ABABCABAB"
-    KMPSearch(pat, txt)
+    print(kmp("ababcabcabababd", "ababd"))
+    print(kmp("Some real text to show reliability of algo", "re"))
+    print(kmp("Some real text to show reliability of algo", "axios"))
 
 
 if __name__ == '__main__':
     start = time.process_time()
     main()
     end = time.process_time()
-    print(end-start)
+    print(end - start)
